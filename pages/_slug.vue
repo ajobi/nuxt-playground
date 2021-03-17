@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { parse } from 'node-html-parser'
 
 export default {
   async asyncData ({ route }) {
@@ -26,15 +27,11 @@ export default {
     })
     const data = await response.text()
 
-    const DomParser = require('dom-parser')
-    const parser = new DomParser()
-    const dom = parser.parseFromString(data)
-
-    const linkTags = dom.getElementsByTagName('link').map(link => link.outerHTML)
-    const styleTags = dom.getElementsByTagName('style').map(style => style.outerHTML)
-    const scriptTags = dom.getElementsByTagName('script').map(script => script.outerHTML)
-    // const contentHtml = dom.getElementsByTagName('main')[0].outerHTML.replace(/require\(/g, 'console.log(')
-    const contentHtml = dom.getElementsByTagName('main')[0].outerHTML
+    const dom = parse(data)
+    const linkTags = dom.querySelectorAll('link').map(link => link.toString())
+    const styleTags = dom.querySelectorAll('style').map(style => style.toString())
+    const scriptTags = dom.querySelectorAll('script').map(script => script.toString())
+    const contentHtml = dom.querySelector('main').toString()
 
     return {
       linkTags,
