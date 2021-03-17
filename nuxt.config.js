@@ -12,6 +12,11 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js'
+      }
     ]
   },
 
@@ -29,9 +34,9 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
+    // '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module',
+    // '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss'
   ],
@@ -42,5 +47,16 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  router: {
+    extendRoutes (routes, resolve) {
+      const slug = '([a-z0-9A-F%-]+)'
+      routes.unshift({
+        name: 'sn-page',
+        path: `/:channelSlugs${slug}*`,
+        component: resolve(__dirname, 'pages/_slug.vue')
+      })
+    }
   }
 }
