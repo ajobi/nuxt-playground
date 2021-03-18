@@ -40,6 +40,11 @@ export default {
 
     const scriptTags = dom.querySelectorAll('script')
       .filter(script => !dom.querySelectorAll('main script').includes(script))
+      .filter(script => !script.toString().includes('header/default'))
+      // .filter(script => !script.toString().includes('header/recommendation'))
+      .filter(script => !script.toString().includes('header/menu'))
+      .filter(script => !script.toString().includes('header/weather'))
+      .filter(script => !script.toString().includes('header/search'))
       .filter(script => !script.toString().includes('footer/default'))
       .filter(script => !script.toString().includes('behave'))
       .map(script => script.toString())
