@@ -9,6 +9,7 @@
     <div id="scripts">
       <div v-for="(item, index) in scriptTags" :key="index " v-html="item" />
     </div>
+    <div v-html="adboxHtml" />
     <div v-html="contentHtml" />
   </div>
 </template>
@@ -31,12 +32,14 @@ export default {
     const linkTags = dom.querySelectorAll('link').map(link => link.toString())
     const styleTags = dom.querySelectorAll('style').map(style => style.toString())
     const scriptTags = dom.querySelectorAll('script').map(script => script.toString())
+    const adboxHtml = dom.querySelector('.adbox').toString()
     const contentHtml = dom.querySelector('main').toString()
 
     return {
       linkTags,
       styleTags,
       scriptTags,
+      adboxHtml,
       contentHtml
     }
   },
@@ -45,6 +48,7 @@ export default {
       linkTags: [],
       styleTags: [],
       scriptTags: [],
+      adboxHtml: null,
       contentHtml: null
     }
   }
