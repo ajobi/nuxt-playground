@@ -41,6 +41,7 @@ export default {
     const scriptTags = dom.querySelectorAll('script')
       .filter(script => !dom.querySelectorAll('main script').includes(script))
       .filter(script => !script.toString().includes('footer/default'))
+      .filter(script => !script.toString().includes('behave'))
       .map(script => script.toString())
 
     const adboxHtml = dom.querySelector('.adbox')
