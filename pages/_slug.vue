@@ -29,11 +29,29 @@ export default {
     const data = await response.text()
 
     const dom = parse(data)
-    const linkTags = dom.querySelectorAll('link').map(link => link.toString())
-    const styleTags = dom.querySelectorAll('style').map(style => style.toString())
-    const scriptTags = dom.querySelectorAll('script').map(script => script.toString())
-    const adboxHtml = dom.querySelector('.adbox').toString()
-    const contentHtml = dom.querySelector('main').toString()
+
+    const mainLinkTags = dom.querySelectorAll('main link')
+    const mainScriptTags = dom.querySelectorAll('main script')
+    const mainStyleTags = dom.querySelectorAll('main style')
+
+    const linkTags = dom.querySelectorAll('link')
+      .filter(link => !mainLinkTags.includes(link))
+      .map(link => link.toString())
+
+    const styleTags = dom.querySelectorAll('style')
+      .filter(style => !mainStyleTags.includes(style))
+      .map(style => style.toString())
+
+    const scriptTags = dom.querySelectorAll('script')
+      .filter(script => !mainScriptTags.includes(script))
+      .filter(script => !script.toString().includes('footer/default'))
+      .map(script => script.toString())
+
+    const adboxHtml = dom.querySelector('.adbox')
+      .toString()
+
+    const contentHtml = dom.querySelector('main')
+      .toString()
       .replace(/href="\/\/www\.sn\.at/g, 'href="')
       .replace(/href="https:\/\/www\.sn\.at/g, 'href="')
 
