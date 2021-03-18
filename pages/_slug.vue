@@ -30,20 +30,16 @@ export default {
 
     const dom = parse(data)
 
-    const mainLinkTags = dom.querySelectorAll('main link')
-    const mainScriptTags = dom.querySelectorAll('main script')
-    const mainStyleTags = dom.querySelectorAll('main style')
-
     const linkTags = dom.querySelectorAll('link')
-      .filter(link => !mainLinkTags.includes(link))
+      .filter(link => !dom.querySelectorAll('main link').includes(link))
       .map(link => link.toString())
 
     const styleTags = dom.querySelectorAll('style')
-      .filter(style => !mainStyleTags.includes(style))
+      .filter(style => !dom.querySelectorAll('main style').includes(style))
       .map(style => style.toString())
 
     const scriptTags = dom.querySelectorAll('script')
-      .filter(script => !mainScriptTags.includes(script))
+      .filter(script => !dom.querySelectorAll('main script').includes(script))
       .filter(script => !script.toString().includes('footer/default'))
       .map(script => script.toString())
 
