@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="h-32 bg-blue-100 shadow flex items-center justify-center">
-      Custom header
+      <a href="http://localhost:3000">Custom header</a>
     </header>
     <Nuxt />
     <header class="h-56 bg-gray-200 flex items-center justify-center">

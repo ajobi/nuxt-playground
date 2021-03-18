@@ -34,6 +34,8 @@ export default {
     const scriptTags = dom.querySelectorAll('script').map(script => script.toString())
     const adboxHtml = dom.querySelector('.adbox').toString()
     const contentHtml = dom.querySelector('main').toString()
+      .replace(/href="\/\/www\.sn\.at/g, 'href="')
+      .replace(/href="https:\/\/www\.sn\.at/g, 'href="')
 
     return {
       linkTags,
