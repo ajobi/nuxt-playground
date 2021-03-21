@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     {{ counter }}
-    <button class="bg-green-400 p-4" @click="counter++">
+    <button class="bg-blue-400 p-4" @click="counter++">
       Incerement
     </button>
   </div>
