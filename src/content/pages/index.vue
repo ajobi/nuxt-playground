@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="text-center">
     {{ counter }}
     <button class="bg-green-400 p-4" @click="counter++">
       Incerement

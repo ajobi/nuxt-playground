@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
-    "lint": "yarn lint:js && yarn lint:style"
+    "content:dev": "nuxt --config-file src/content/nuxt.config.js -p=3000",
+    "header:dev": "nuxt --config-file src/header/nuxt.config.js -p=3001",
+    "content:build": "nuxt build --config-file src/content/nuxt.config.js",
+    "header:build": "nuxt build --config-file src/header/nuxt.config.js",
+    "content:start": "nuxt start --config-file src/content/nuxt.config.js -p=3000",
+    "header:start": "nuxt start --config-file src/header/nuxt.config.js -p=3001",
+    "build": "yarn header:build && yarn content:build",
+    "dev": "concurrently \"yarn content:dev\" \"yarn header:dev\"",
+    "start": "concurrently \"yarn content:start\" \"yarn header:start\"",
+    "express": "node server.js"
   },
   "dependencies": {
+    "concurrently": "^6.0.0",
     "core-js": "^3.8.3",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",

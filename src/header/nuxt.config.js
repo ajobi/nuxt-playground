@@ -23,12 +23,16 @@ export default {
     '@nuxtjs/tailwindcss'
   ],
 
+  globalName: 'nuxtHeader',
+  srcDir: __dirname,
+  buildDir: '.nuxt/header',
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    publicPath: 'http://localhost:3000/_nuxt/'
+    publicPath: 'http://localhost:3001/_nuxt/'
   }
 }
