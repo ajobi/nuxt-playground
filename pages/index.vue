@@ -15,9 +15,12 @@ export default {
       zoomLevel: 1
     }
   },
-  computed: {
-    data () {
-      return {
+  async mounted () {
+    await import('chartjs-plugin-zoom')
+
+    const options = {
+      type: 'bubble',
+      data: {
         datasets: [
           {
             datalabels: {
@@ -27,42 +30,39 @@ export default {
               {
                 id: 'Article 1',
                 x: 49,
-                y: 49,
-                r: 7 * this.zoomLevel
+                y: 49
               },
               {
                 id: 'Article 2',
                 x: 52,
-                y: 47,
-                r: 7 * this.zoomLevel
+                y: 47
               },
               {
                 id: 'Article 3',
                 x: 66,
-                y: 65,
-                r: 7 * this.zoomLevel
+                y: 65
               },
               {
                 id: 'Article 4',
                 x: 69,
-                y: 69,
-                r: 7 * this.zoomLevel
+                y: 69
               },
               {
                 id: 'Article 5',
                 x: 72,
-                y: 70,
-                r: 7 * this.zoomLevel
+                y: 70
               },
               {
                 id: 'Article 6',
                 x: 46,
-                y: 45,
-                r: 7 * this.zoomLevel
+                y: 45
               }
             ],
             backgroundColor: '#88DBFD',
-            hoverBackgroundColor: '#88DBFD'
+            hoverBackgroundColor: '#88DBFD',
+            radius: (context) => {
+              return 7 * this.zoomLevel
+            }
           },
           {
             datalabels: {
@@ -72,15 +72,17 @@ export default {
             data: [
               {
                 x: 70,
-                y: 70,
-                r: 100 * this.zoomLevel
+                y: 70
               }
             ],
             borderColor: '#FBFDFF',
             backgroundColor: '#FBFDFF',
             hoverBackgroundColor: '#FBFDFF',
             hoverBorderColor: '#FBFDFF',
-            hoverRadius: 0
+            hoverRadius: 0,
+            radius: (context) => {
+              return 100 * this.zoomLevel
+            }
           },
           {
             datalabels: {
@@ -90,26 +92,20 @@ export default {
             data: [
               {
                 x: 50,
-                y: 50,
-                r: 100 * this.zoomLevel
+                y: 50
               }
             ],
             borderColor: '#FBFDFF',
             backgroundColor: '#FBFDFF',
             hoverBackgroundColor: '#FBFDFF',
             hoverBorderColor: '#FBFDFF',
-            hoverRadius: 0
+            hoverRadius: 0,
+            radius: (context) => {
+              return 100 * this.zoomLevel
+            }
           }
         ]
-      }
-    }
-  },
-  async mounted () {
-    await import('chartjs-plugin-zoom')
-
-    const options = {
-      type: 'bubble',
-      data: JSON.parse(JSON.stringify(this.data)),
+      },
       options: {
         tooltips: {
           enabled: false
@@ -250,9 +246,6 @@ export default {
               // Function called while the user is zooming
               onZoom: ({ chart }) => {
                 this.zoomLevel = 100 / chart.scales['x-axis-0'].end
-                // this.$nextTick(() => {
-                //   options.data = JSON.parse(JSON.stringify(this.data))
-                // })
               },
               // Function called once zooming is completed
               onZoomComplete ({ chart }) { console.log('I was zoomed!!!') },
