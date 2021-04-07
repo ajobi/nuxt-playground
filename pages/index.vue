@@ -6,6 +6,7 @@
 
 <script>
 import { Chart } from 'chart.js/dist/Chart'
+import 'chartjs-plugin-datalabels'
 
 export default {
   mounted () {
@@ -14,6 +15,9 @@ export default {
       data: {
         datasets: [
           {
+            datalabels: {
+              display: false
+            },
             data: [
               {
                 id: 'point1',
@@ -56,12 +60,11 @@ export default {
             hoverBackgroundColor: '#88DBFD'
           },
           {
+            datalabels: {
+              display: true
+            },
+            label: 'Krankenstand',
             data: [
-              {
-                x: 50,
-                y: 50,
-                r: 100
-              },
               {
                 x: 70,
                 y: 70,
@@ -70,7 +73,27 @@ export default {
             ],
             borderColor: '#FBFDFF',
             backgroundColor: '#FBFDFF',
-            hoverBackgroundColor: '#FBFDFF'
+            hoverBackgroundColor: '#FBFDFF',
+            hoverBorderColor: '#FBFDFF',
+            hoverRadius: 0
+          },
+          {
+            datalabels: {
+              display: true
+            },
+            label: 'Steuern',
+            data: [
+              {
+                x: 50,
+                y: 50,
+                r: 100
+              }
+            ],
+            borderColor: '#FBFDFF',
+            backgroundColor: '#FBFDFF',
+            hoverBackgroundColor: '#FBFDFF',
+            hoverBorderColor: '#FBFDFF',
+            hoverRadius: 0
           }
         ]
       },
@@ -78,31 +101,45 @@ export default {
         tooltips: {
           enabled: false
         },
-        scales:
-          {
-            yAxes: [{
+        scales: {
+          yAxes: [{
+            display: false,
+            ticks: {
+              min: 0,
+              max: 100
+            },
+            gridLines: {
               display: false,
-              ticks: {
-                min: 0,
-                max: 100
-              },
-              gridLines: {
-                display: false,
-                drawBorder: false
-              }
-            }],
-            xAxes: [{
+              drawBorder: false
+            }
+          }],
+          xAxes: [{
+            display: false,
+            ticks: {
+              min: 0,
+              max: 100
+            },
+            gridLines: {
               display: false,
-              ticks: {
-                min: 0,
-                max: 100
-              },
-              gridLines: {
-                display: false,
-                drawBorder: false
-              }
-            }]
+              drawBorder: false
+            }
+          }]
+        },
+        plugins: {
+          datalabels: {
+            anchor: 'end',
+            align: 'end',
+            color: '#B8C1CA',
+            font: {
+              size: 20
+            },
+            formatter (value, context) {
+              return context.dataset.label
+            },
+            offset: -25,
+            padding: 0
           }
+        }
       }
     }
 
@@ -124,6 +161,7 @@ export default {
 
 <style>
 .container {
+  margin: auto;
   background-color: hsl(208, 100%, 97%);
 }
 </style>
