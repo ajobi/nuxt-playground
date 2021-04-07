@@ -1,15 +1,20 @@
 <template>
   <div class="container">
     <canvas id="chartJSContainer" width="600" height="400" />
+    ZOOM: {{ zoomLevel }}
   </div>
 </template>
 
 <script>
 import { Chart } from 'chart.js/dist/Chart'
 import 'chartjs-plugin-datalabels'
-// import 'chartjs-plugin-zoom'
 
 export default {
+  data () {
+    return {
+      zoomLevel: 1
+    }
+  },
   async mounted () {
     await import('chartjs-plugin-zoom')
 
@@ -238,7 +243,9 @@ export default {
               sensitivity: 3,
 
               // Function called while the user is zooming
-              onZoom ({ chart }) { console.log('I\'m zooming!!!') },
+              onZoom: ({ chart }) => {
+                this.zoomLevel = 100 / chart.scales['x-axis-0'].end
+              },
               // Function called once zooming is completed
               onZoomComplete ({ chart }) { console.log('I was zoomed!!!') },
               // Function called when wheel input occurs without modifier key
