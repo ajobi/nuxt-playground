@@ -28,37 +28,37 @@ export default {
             },
             data: [
               {
-                id: 'point1',
+                id: 'Article 1',
                 x: 49,
                 y: 49,
                 r: 7
               },
               {
-                id: 'point2',
+                id: 'Article 2',
                 x: 52,
                 y: 47,
                 r: 7
               },
               {
-                id: 'point3',
+                id: 'Article 3',
                 x: 66,
                 y: 65,
                 r: 7
               },
               {
-                id: 'point4',
+                id: 'Article 4',
                 x: 69,
                 y: 69,
                 r: 7
               },
               {
-                id: 'point5',
+                id: 'Article 5',
                 x: 72,
                 y: 70,
                 r: 7
               },
               {
-                id: 'point6',
+                id: 'Article 6',
                 x: 46,
                 y: 45,
                 r: 7
@@ -272,7 +272,9 @@ export default {
       }
 
       const { _datasetIndex, _index } = point
-      console.log(options.data.datasets[_datasetIndex].data[_index])
+      const dataPoint = options.data.datasets[_datasetIndex].data[_index]
+      alert(dataPoint.id)
+      console.log(dataPoint)
     }
   }
 }
