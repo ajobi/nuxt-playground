@@ -237,7 +237,8 @@ export default {
 
               // Function called while the user is zooming
               onZoom: ({ chart }) => {
-                this.zoomLevel = 100 / chart.scales['x-axis-0'].end
+                const { min, max } = chart.scales['x-axis-0']
+                this.zoomLevel = 100 / (max - min)
               }
             }
           }
