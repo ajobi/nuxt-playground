@@ -182,15 +182,7 @@ export default {
               speed: 20,
 
               // Minimal pan distance required before actually applying pan
-              threshold: 10,
-
-              // Function called while the user is panning
-              onPan ({ chart }) { console.log('I\'m panning!!!') },
-              // Function called once panning is completed
-              onPanComplete ({ chart }) { console.log('I was panned!!!') },
-              // Function called when pan fails because modifier key was not detected.
-              // event is the a hammer event that failed - see https://hammerjs.github.io/api#event-object
-              onPanRejected ({ chart, event }) { console.log('I didn\'t start panning!') }
+              threshold: 10
             },
 
             // Container for zoom options
@@ -246,11 +238,7 @@ export default {
               // Function called while the user is zooming
               onZoom: ({ chart }) => {
                 this.zoomLevel = 100 / chart.scales['x-axis-0'].end
-              },
-              // Function called once zooming is completed
-              onZoomComplete ({ chart }) { console.log('I was zoomed!!!') },
-              // Function called when wheel input occurs without modifier key
-              onZoomRejected ({ chart, event }) { console.log('I didn\'t start zooming!') }
+              }
             }
           }
         }
