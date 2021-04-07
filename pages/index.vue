@@ -152,7 +152,13 @@ export default {
     const myChart = new Chart(ctx, options)
 
     canvas.onclick = function (e) {
-      const { _datasetIndex, _index } = myChart.getElementsAtEvent(e).filter(item => item._datasetIndex === 0)[0]
+      const point = myChart.getElementsAtEvent(e).filter(item => item._datasetIndex === 0)[0]
+
+      if (!point) {
+        return
+      }
+
+      const { _datasetIndex, _index } = point
       console.log(options.data.datasets[_datasetIndex].data[_index])
     }
   }
