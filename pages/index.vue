@@ -15,12 +15,9 @@ export default {
       zoomLevel: 1
     }
   },
-  async mounted () {
-    await import('chartjs-plugin-zoom')
-
-    const options = {
-      type: 'bubble',
-      data: {
+  computed: {
+    data () {
+      return {
         datasets: [
           {
             datalabels: {
@@ -31,37 +28,37 @@ export default {
                 id: 'Article 1',
                 x: 49,
                 y: 49,
-                r: 7
+                r: 7 * this.zoomLevel
               },
               {
                 id: 'Article 2',
                 x: 52,
                 y: 47,
-                r: 7
+                r: 7 * this.zoomLevel
               },
               {
                 id: 'Article 3',
                 x: 66,
                 y: 65,
-                r: 7
+                r: 7 * this.zoomLevel
               },
               {
                 id: 'Article 4',
                 x: 69,
                 y: 69,
-                r: 7
+                r: 7 * this.zoomLevel
               },
               {
                 id: 'Article 5',
                 x: 72,
                 y: 70,
-                r: 7
+                r: 7 * this.zoomLevel
               },
               {
                 id: 'Article 6',
                 x: 46,
                 y: 45,
-                r: 7
+                r: 7 * this.zoomLevel
               }
             ],
             backgroundColor: '#88DBFD',
@@ -76,7 +73,7 @@ export default {
               {
                 x: 70,
                 y: 70,
-                r: 100
+                r: 100 * this.zoomLevel
               }
             ],
             borderColor: '#FBFDFF',
@@ -94,7 +91,7 @@ export default {
               {
                 x: 50,
                 y: 50,
-                r: 100
+                r: 100 * this.zoomLevel
               }
             ],
             borderColor: '#FBFDFF',
@@ -104,7 +101,15 @@ export default {
             hoverRadius: 0
           }
         ]
-      },
+      }
+    }
+  },
+  async mounted () {
+    await import('chartjs-plugin-zoom')
+
+    const options = {
+      type: 'bubble',
+      data: JSON.parse(JSON.stringify(this.data)),
       options: {
         tooltips: {
           enabled: false
@@ -245,6 +250,9 @@ export default {
               // Function called while the user is zooming
               onZoom: ({ chart }) => {
                 this.zoomLevel = 100 / chart.scales['x-axis-0'].end
+                // this.$nextTick(() => {
+                //   options.data = JSON.parse(JSON.stringify(this.data))
+                // })
               },
               // Function called once zooming is completed
               onZoomComplete ({ chart }) { console.log('I was zoomed!!!') },
