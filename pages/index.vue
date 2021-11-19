@@ -24,11 +24,18 @@
         </a>
       </div>
     </div>
+    <Swiper />
   </div>
 </template>
 
 <script>
-export default {}
+import Swiper from '~/components/Swiper'
+
+export default {
+  components: {
+    Swiper
+  }
+}
 </script>
 
 <style>
