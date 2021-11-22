@@ -40,7 +40,7 @@ export default {
     }
 
     onMounted(() => {
-      if (!swiperRef.value) {
+      if (!swiperRef || !swiperRef.value) {
         return
       }
       swiperRef.value.on('_slideClass', updateClasses)
