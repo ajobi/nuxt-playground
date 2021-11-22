@@ -21,6 +21,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '@/plugins/compositionApi.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,5 +43,17 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: [
+      /^swiper.*/,
+      /^ssr-window.*/,
+      /^vue-server-renderer.*/,
+      /^dom7.*/
+    ],
+    extend (config, { isClient }) {
+      // Extend only webpack config for client-bundle
+      if (isClient) {
+        config.devtool = 'source-map'
+      }
+    }
   }
 }
