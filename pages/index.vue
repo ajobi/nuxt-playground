@@ -24,16 +24,16 @@
         </a>
       </div>
     </div>
-    <Swiper />
+    <SwiperDemo />
   </div>
 </template>
 
 <script>
-import Swiper from '~/components/Swiper'
+import SwiperDemo from '~/components/SwiperDemo'
 
 export default {
   components: {
-    Swiper
+    SwiperDemo
   }
 }
 </script>
