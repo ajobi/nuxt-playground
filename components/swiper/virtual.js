@@ -1,6 +1,7 @@
 import { h } from '@vue/composition-api'
 
 function updateOnVirtualData (swiper) {
+  // eslint-disable-next-line no-mixed-operators
   if (!swiper || swiper.destroyed || !swiper.params.virtual || swiper.params.virtual && !swiper.params.virtual.enabled) { return }
   swiper.updateSlides()
   swiper.updateProgress()
@@ -19,11 +20,11 @@ function renderVirtual (swiperRef, slides, virtualData) {
   if (!virtualData) { return null }
   const style = swiperRef.value.isHorizontal()
     ? {
-        [swiperRef.value.rtlTranslate ? 'right' : 'left']: `${virtualData.offset}px`
-      }
+      [swiperRef.value.rtlTranslate ? 'right' : 'left']: `${virtualData.offset}px`
+    }
     : {
-        top: `${virtualData.offset}px`
-      }
+      top: `${virtualData.offset}px`
+    }
   return slides.filter((slide, index) => index >= virtualData.from && index <= virtualData.to).map((slide) => {
     if (!slide.props) { slide.props = {} }
     if (!slide.props.style) { slide.props.style = {} }
