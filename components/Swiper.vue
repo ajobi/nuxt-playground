@@ -33,7 +33,8 @@
 </template>
 <script>
 // Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue/swiper-vue'
+// import { Swiper, SwiperSlide } from 'swiper/vue/swiper-vue'
+import { Swiper, SwiperSlide } from '@/swiper/custom-swiper-vue'
 
 // Import Swiper styles
 import 'swiper/swiper-bundle.css'
