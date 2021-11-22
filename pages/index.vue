@@ -1,15 +1,20 @@
 <template>
   <div class="container">
-    <SwiperDemo />
+    <!--    <SwiperDemo />-->
+    <TestWrapper>
+      Hello
+    </TestWrapper>
   </div>
 </template>
 
 <script>
-import SwiperDemo from '~/components/SwiperDemo'
+// import SwiperDemo from '~/components/SwiperDemo'
+import TestWrapper from '~/components/TestWrapper'
 
 export default {
   components: {
-    SwiperDemo
+    // SwiperDemo,
+    TestWrapper
   }
 }
 </script>
